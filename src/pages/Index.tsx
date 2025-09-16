@@ -131,7 +131,6 @@ const Index = () => {
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
             <CardHeader>
               <Icon name="Sparkles" size={48} className="text-yellow-200 mx-auto mb-4" />
-              <CardTitle className="text-2xl font-montserrat">Кастомные заказы</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg text-white/90 font-open-sans">
