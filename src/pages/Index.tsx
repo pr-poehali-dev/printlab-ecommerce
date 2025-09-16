@@ -6,17 +6,38 @@ const Index = () => {
   const products = [
     {
       id: 1,
-      name: "Каракатица",
-      price: "650₽",
-      image: "https://cdn.poehali.dev/files/e31c9c10-11db-4595-94a9-6880295801d9.jpeg",
-      description: "Подвижная 3D модель каракатицы с гибкими щупальцами"
+      name: "Китовая акула",
+      price: "500₽",
+      image: "https://cdn.poehali.dev/files/ebea276f-02e6-481b-909c-700c3b6d6b56.jpeg",
+      description: "Подвижная 3D модель китовой акулы с сегментированным телом"
     },
     {
       id: 2,
-      name: "Хамелеон",
-      price: "500₽", 
-      image: "https://cdn.poehali.dev/files/b2ba80d9-a251-4423-9f6c-3c65725630ea.jpeg",
-      description: "Гибкая 3D модель хамелеона с подвижными частями"
+      name: "Лягушка",
+      price: "150₽", 
+      image: "https://cdn.poehali.dev/files/c79fb40a-9f06-42f2-9e21-05546d16b4e2.jpeg",
+      description: "Компактная подвижная лягушка с гибкими суставами"
+    },
+    {
+      id: 3,
+      name: "Ленивый кот",
+      price: "350₽",
+      image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
+      description: "Забавная модель ленивого кота с подвижными частями"
+    },
+    {
+      id: 4,
+      name: "Акула молот",
+      price: "400₽",
+      image: "https://cdn.poehali.dev/files/10401ffa-4b31-4b2b-8ccc-83d178f1080a.jpeg",
+      description: "Детализированная акула-молот с подвижными плавниками"
+    },
+    {
+      id: 5,
+      name: "Игрушка-брелок тарантул",
+      price: "350₽",
+      image: "img/5888810c-687e-4b38-bac1-7f0efe1029c3.jpg",
+      description: "Компактный брелок-тарантул с подвижными лапками"
     }
   ];
 
@@ -69,7 +90,7 @@ const Index = () => {
             Каталог: Подвижные игрушки
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {products.map((product) => (
               <Card key={product.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300">
                 <CardHeader>
