@@ -38,6 +38,13 @@ const Index = () => {
       price: "350₽",
       image: "img/5888810c-687e-4b38-bac1-7f0efe1029c3.jpg",
       description: "Компактный брелок-тарантул с подвижными лапками"
+    },
+    {
+      id: 6,
+      name: "Хамелеон",
+      price: "450₽",
+      image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
+      description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
     }
   ];
 
@@ -131,7 +138,7 @@ const Index = () => {
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
             <CardHeader>
               <Icon name="Sparkles" size={48} className="text-yellow-200 mx-auto mb-4" />
-              <CardTitle className="text-2xl font-montserrat">Кастомные заказы</CardTitle>
+
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg text-white/90 font-open-sans">
