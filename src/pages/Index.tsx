@@ -1,31 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
-import { useState } from 'react';
 
 const Index = () => {
-  const [cart, setCart] = useState<number[]>([]);
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
-
-  const addToCart = (productId: number) => {
-    setCart(prev => [...prev, productId]);
-  };
-
-  const removeFromCart = (productId: number) => {
-    setCart(prev => prev.filter(id => id !== productId));
-  };
-
-  const getCartCount = (productId: number) => {
-    return cart.filter(id => id === productId).length;
-  };
-
-  const getTotalItems = () => {
-    return cart.length;
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-  };
   const products = [
     {
       id: 1,
@@ -44,7 +21,7 @@ const Index = () => {
     {
       id: 3,
       name: "Ленивый кот",
-      price: "250₽",
+      price: "350₽",
       image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
       description: "Забавная модель ленивого кота с подвижными частями"
     },
@@ -58,14 +35,14 @@ const Index = () => {
     {
       id: 5,
       name: "Игрушка-брелок тарантул",
-      price: "300₽",
+      price: "350₽",
       image: "https://cdn.poehali.dev/files/a0030e5a-7043-4959-9007-e4c985781c1b.jpeg",
       description: "Компактный брелок-тарантул с подвижными лапками"
     },
     {
       id: 6,
       name: "Хамелеон",
-      price: "500₽",
+      price: "450₽",
       image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
       description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
     },
@@ -79,7 +56,7 @@ const Index = () => {
     {
       id: 8,
       name: "Каракатица",
-      price: "550₽",
+      price: "500₽",
       image: "https://cdn.poehali.dev/files/fbfd8853-c5ef-4c61-bea3-4d3eacc642eb.jpeg",
       description: "Детализированная каракатица с подвижными щупальцами"
     },
@@ -107,7 +84,7 @@ const Index = () => {
     {
       id: 12,
       name: "Малыш скорпион",
-      price: "300₽",
+      price: "250₽",
       image: "https://cdn.poehali.dev/files/cb32fccd-7f6a-4d40-a090-c6fec9cfe85e.jpeg",
       description: "Яркий голубой скорпион с подвижным хвостом и клешнями"
     }
@@ -123,27 +100,9 @@ const Index = () => {
               <Icon name="Boxes" size={32} className="text-white" />
               <h1 className="text-2xl font-bold text-white font-montserrat">PrintLab</h1>
             </div>
-            <nav className="hidden md:flex space-x-6 items-center">
-              <button 
-                onClick={() => scrollToSection('catalog')} 
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Каталог
-              </button>
-              <button 
-                onClick={() => scrollToSection('custom')} 
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Сделать заказ
-              </button>
-              <div className="relative">
-                <Icon name="ShoppingCart" size={24} className="text-white" />
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </div>
+            <nav className="hidden md:flex space-x-6">
+              <a href="#catalog" className="text-white hover:text-yellow-200 transition-colors">Каталог</a>
+              <a href="#custom" className="text-white hover:text-yellow-200 transition-colors">Сделать заказ</a>
             </nav>
           </div>
         </div>
@@ -164,9 +123,8 @@ const Index = () => {
             От готовых игрушек до индивидуальных заказов.
           </p>
           <Button 
-            onClick={() => scrollToSection('catalog')}
             size="lg" 
-            className="bg-white text-purple-600 hover:bg-yellow-100 font-montserrat font-semibold px-8 py-4 text-lg animate-scale-in transform hover:scale-105 transition-all duration-300"
+            className="bg-white text-purple-600 hover:bg-yellow-100 font-montserrat font-semibold px-8 py-4 text-lg animate-scale-in"
           >
             Смотреть каталог
             <Icon name="ArrowRight" size={20} className="ml-2" />
@@ -183,26 +141,14 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {products.map((product) => (
-              <Card 
-                key={product.id} 
-                className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300 cursor-pointer"
-                onMouseEnter={() => setHoveredProduct(product.id)}
-                onMouseLeave={() => setHoveredProduct(null)}
-              >
+              <Card key={product.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300">
                 <CardHeader>
-                  <div className="aspect-square rounded-lg overflow-hidden mb-4 relative">
+                  <div className="aspect-square rounded-lg overflow-hidden mb-4">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className={`w-full h-full object-cover transition-transform duration-300 ${
-                        hoveredProduct === product.id ? 'scale-110' : 'scale-100'
-                      }`}
+                      className="w-full h-full object-cover"
                     />
-                    {getCartCount(product.id) > 0 && (
-                      <div className="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                        {getCartCount(product.id)}
-                      </div>
-                    )}
                   </div>
                   <CardTitle className="text-2xl font-montserrat">{product.name}</CardTitle>
                   <CardDescription className="text-white/70 font-open-sans">
@@ -213,24 +159,10 @@ const Index = () => {
                   <span className="text-3xl font-bold text-yellow-200 font-montserrat">
                     {product.price}
                   </span>
-                  <div className="flex items-center gap-2">
-                    {getCartCount(product.id) > 0 && (
-                      <Button 
-                        onClick={() => removeFromCart(product.id)}
-                        size="sm"
-                        className="bg-red-500 hover:bg-red-600 text-white font-montserrat"
-                      >
-                        <Icon name="Minus" size={16} />
-                      </Button>
-                    )}
-                    <Button 
-                      onClick={() => addToCart(product.id)}
-                      className="bg-orange-500 hover:bg-orange-600 text-white font-montserrat transform hover:scale-105 transition-all duration-200"
-                    >
-                      {getCartCount(product.id) === 0 ? 'Заказать' : 'Ещё +'}
-                      <Icon name="ShoppingCart" size={18} className="ml-2" />
-                    </Button>
-                  </div>
+                  <Button className="bg-orange-500 hover:bg-orange-600 text-white font-montserrat">
+                    Заказать
+                    <Icon name="ShoppingCart" size={18} className="ml-2" />
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
@@ -288,9 +220,8 @@ const Index = () => {
             </CardContent>
             <CardFooter>
               <Button 
-                onClick={() => window.open('tel:+79659911806', '_self')}
                 size="lg" 
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-montserrat transform hover:scale-105 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-montserrat"
               >
                 <Icon name="Phone" size={20} className="mr-2" />
                 Связаться с нами
