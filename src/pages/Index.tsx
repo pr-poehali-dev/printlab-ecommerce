@@ -1,115 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
-import { useState } from 'react';
 
 const Index = () => {
-  const [cart, setCart] = useState<number[]>([]);
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
-
-  const addToCart = (productId: number) => {
-    setCart(prev => [...prev, productId]);
-  };
-
-  const removeFromCart = (productId: number) => {
-    setCart(prev => prev.filter(id => id !== productId));
-  };
-
-  const getCartCount = (productId: number) => {
-    return cart.filter(id => id === productId).length;
-  };
-
-  const getTotalItems = () => {
-    return cart.length;
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-  };
   const products = [
     {
       id: 1,
-      name: "Китовая акула",
-      price: "500₽",
-      image: "https://cdn.poehali.dev/files/ebea276f-02e6-481b-909c-700c3b6d6b56.jpeg",
-      description: "Подвижная 3D модель китовой акулы с сегментированным телом"
+      name: "Каракатица",
+      price: "650₽",
+      image: "https://cdn.poehali.dev/files/e31c9c10-11db-4595-94a9-6880295801d9.jpeg",
+      description: "Подвижная 3D модель каракатицы с гибкими щупальцами"
     },
     {
       id: 2,
-      name: "Лягушка",
-      price: "150₽", 
-      image: "https://cdn.poehali.dev/files/c79fb40a-9f06-42f2-9e21-05546d16b4e2.jpeg",
-      description: "Компактная подвижная лягушка с гибкими суставами"
-    },
-    {
-      id: 3,
-      name: "Ленивый кот",
-      price: "250₽",
-      image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
-      description: "Забавная модель ленивого кота с подвижными частями"
-    },
-    {
-      id: 4,
-      name: "Акула молот",
-      price: "400₽",
-      image: "https://cdn.poehali.dev/files/10401ffa-4b31-4b2b-8ccc-83d178f1080a.jpeg",
-      description: "Детализированная акула-молот с подвижными плавниками"
-    },
-    {
-      id: 5,
-      name: "Игрушка-брелок тарантул",
-      price: "300₽",
-      image: "https://cdn.poehali.dev/files/a0030e5a-7043-4959-9007-e4c985781c1b.jpeg",
-      description: "Компактный брелок-тарантул с подвижными лапками"
-    },
-    {
-      id: 6,
       name: "Хамелеон",
-      price: "500₽",
-      image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
-      description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
-    },
-    {
-      id: 7,
-      name: "Змея",
-      price: "200₽",
-      image: "https://cdn.poehali.dev/files/cf333ed5-2708-4e4a-b3fc-7377e89384f3.jpeg",
-      description: "Гибкая змея с сегментированным телом и реалистичной головой"
-    },
-    {
-      id: 8,
-      name: "Каракатица",
-      price: "550₽",
-      image: "https://cdn.poehali.dev/files/fbfd8853-c5ef-4c61-bea3-4d3eacc642eb.jpeg",
-      description: "Детализированная каракатица с подвижными щупальцами"
-    },
-    {
-      id: 9,
-      name: "Карп",
-      price: "350₽",
-      image: "https://cdn.poehali.dev/files/3678eafa-3f19-4745-9c30-097c6c4880c6.jpeg",
-      description: "Подвижная модель карпа с гибким хвостом и плавниками"
-    },
-    {
-      id: 10,
-      name: "Морская звезда",
-      price: "250₽",
-      image: "https://cdn.poehali.dev/files/b58a417d-47e2-48ec-a45f-22282741b866.jpeg",
-      description: "Яркая морская звезда с подвижными лучами"
-    },
-    {
-      id: 11,
-      name: "Кенгуру",
-      price: "400₽",
-      image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
-      description: "Забавный кенгуру с подвижными лапками и хвостом"
-    },
-    {
-      id: 12,
-      name: "Малыш скорпион",
-      price: "300₽",
-      image: "https://cdn.poehali.dev/files/cb32fccd-7f6a-4d40-a090-c6fec9cfe85e.jpeg",
-      description: "Яркий голубой скорпион с подвижным хвостом и клешнями"
+      price: "500₽", 
+      image: "https://cdn.poehali.dev/files/b2ba80d9-a251-4423-9f6c-3c65725630ea.jpeg",
+      description: "Гибкая 3D модель хамелеона с подвижными частями"
     }
   ];
 
@@ -123,27 +30,9 @@ const Index = () => {
               <Icon name="Boxes" size={32} className="text-white" />
               <h1 className="text-2xl font-bold text-white font-montserrat">PrintLab</h1>
             </div>
-            <nav className="hidden md:flex space-x-6 items-center">
-              <button 
-                onClick={() => scrollToSection('catalog')} 
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Каталог
-              </button>
-              <button 
-                onClick={() => scrollToSection('custom')} 
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Сделать заказ
-              </button>
-              <div className="relative">
-                <Icon name="ShoppingCart" size={24} className="text-white" />
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </div>
+            <nav className="hidden md:flex space-x-6">
+              <a href="#catalog" className="text-white hover:text-yellow-200 transition-colors">Каталог</a>
+              <a href="#custom" className="text-white hover:text-yellow-200 transition-colors">Сделать заказ</a>
             </nav>
           </div>
         </div>
@@ -164,9 +53,8 @@ const Index = () => {
             От готовых игрушек до индивидуальных заказов.
           </p>
           <Button 
-            onClick={() => scrollToSection('catalog')}
             size="lg" 
-            className="bg-white text-purple-600 hover:bg-yellow-100 font-montserrat font-semibold px-8 py-4 text-lg animate-scale-in transform hover:scale-105 transition-all duration-300"
+            className="bg-white text-purple-600 hover:bg-yellow-100 font-montserrat font-semibold px-8 py-4 text-lg animate-scale-in"
           >
             Смотреть каталог
             <Icon name="ArrowRight" size={20} className="ml-2" />
@@ -181,28 +69,16 @@ const Index = () => {
             Каталог: Подвижные игрушки
           </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {products.map((product) => (
-              <Card 
-                key={product.id} 
-                className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300 cursor-pointer"
-                onMouseEnter={() => setHoveredProduct(product.id)}
-                onMouseLeave={() => setHoveredProduct(null)}
-              >
+              <Card key={product.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300">
                 <CardHeader>
-                  <div className="aspect-square rounded-lg overflow-hidden mb-4 relative">
+                  <div className="aspect-square rounded-lg overflow-hidden mb-4">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className={`w-full h-full object-cover transition-transform duration-300 ${
-                        hoveredProduct === product.id ? 'scale-110' : 'scale-100'
-                      }`}
+                      className="w-full h-full object-cover"
                     />
-                    {getCartCount(product.id) > 0 && (
-                      <div className="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                        {getCartCount(product.id)}
-                      </div>
-                    )}
                   </div>
                   <CardTitle className="text-2xl font-montserrat">{product.name}</CardTitle>
                   <CardDescription className="text-white/70 font-open-sans">
@@ -213,24 +89,10 @@ const Index = () => {
                   <span className="text-3xl font-bold text-yellow-200 font-montserrat">
                     {product.price}
                   </span>
-                  <div className="flex items-center gap-2">
-                    {getCartCount(product.id) > 0 && (
-                      <Button 
-                        onClick={() => removeFromCart(product.id)}
-                        size="sm"
-                        className="bg-red-500 hover:bg-red-600 text-white font-montserrat"
-                      >
-                        <Icon name="Minus" size={16} />
-                      </Button>
-                    )}
-                    <Button 
-                      onClick={() => addToCart(product.id)}
-                      className="bg-orange-500 hover:bg-orange-600 text-white font-montserrat transform hover:scale-105 transition-all duration-200"
-                    >
-                      {getCartCount(product.id) === 0 ? 'Заказать' : 'Ещё +'}
-                      <Icon name="ShoppingCart" size={18} className="ml-2" />
-                    </Button>
-                  </div>
+                  <Button className="bg-orange-500 hover:bg-orange-600 text-white font-montserrat">
+                    Заказать
+                    <Icon name="ShoppingCart" size={18} className="ml-2" />
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
@@ -248,7 +110,7 @@ const Index = () => {
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
             <CardHeader>
               <Icon name="Sparkles" size={48} className="text-yellow-200 mx-auto mb-4" />
-
+              <CardTitle className="text-2xl font-montserrat">Кастомные заказы</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg text-white/90 font-open-sans">
@@ -288,9 +150,8 @@ const Index = () => {
             </CardContent>
             <CardFooter>
               <Button 
-                onClick={() => window.open('tel:+79659911806', '_self')}
                 size="lg" 
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-montserrat transform hover:scale-105 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-montserrat"
               >
                 <Icon name="Phone" size={20} className="mr-2" />
                 Связаться с нами
