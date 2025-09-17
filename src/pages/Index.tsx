@@ -36,7 +36,7 @@ const Index = () => {
       id: 5,
       name: "Игрушка-брелок тарантул",
       price: "350₽",
-      image: "img/5888810c-687e-4b38-bac1-7f0efe1029c3.jpg",
+      image: "https://cdn.poehali.dev/files/a0030e5a-7043-4959-9007-e4c985781c1b.jpeg",
       description: "Компактный брелок-тарантул с подвижными лапками"
     },
     {
@@ -80,6 +80,13 @@ const Index = () => {
       price: "400₽",
       image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
       description: "Забавный кенгуру с подвижными лапками и хвостом"
+    },
+    {
+      id: 12,
+      name: "Малыш скорпион",
+      price: "250₽",
+      image: "https://cdn.poehali.dev/files/cb32fccd-7f6a-4d40-a090-c6fec9cfe85e.jpeg",
+      description: "Яркий голубой скорпион с подвижным хвостом и клешнями"
     }
   ];
 
