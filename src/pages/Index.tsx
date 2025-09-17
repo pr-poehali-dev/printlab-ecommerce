@@ -45,6 +45,41 @@ const Index = () => {
       price: "450₽",
       image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
       description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
+    },
+    {
+      id: 7,
+      name: "Змея",
+      price: "200₽",
+      image: "https://cdn.poehali.dev/files/cf333ed5-2708-4e4a-b3fc-7377e89384f3.jpeg",
+      description: "Гибкая змея с сегментированным телом и реалистичной головой"
+    },
+    {
+      id: 8,
+      name: "Каракатица",
+      price: "500₽",
+      image: "https://cdn.poehali.dev/files/fbfd8853-c5ef-4c61-bea3-4d3eacc642eb.jpeg",
+      description: "Детализированная каракатица с подвижными щупальцами"
+    },
+    {
+      id: 9,
+      name: "Карп",
+      price: "350₽",
+      image: "https://cdn.poehali.dev/files/3678eafa-3f19-4745-9c30-097c6c4880c6.jpeg",
+      description: "Подвижная модель карпа с гибким хвостом и плавниками"
+    },
+    {
+      id: 10,
+      name: "Морская звезда",
+      price: "250₽",
+      image: "https://cdn.poehali.dev/files/b58a417d-47e2-48ec-a45f-22282741b866.jpeg",
+      description: "Яркая морская звезда с подвижными лучами"
+    },
+    {
+      id: 11,
+      name: "Кенгуру",
+      price: "400₽",
+      image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
+      description: "Забавный кенгуру с подвижными лапками и хвостом"
     }
   ];
 
