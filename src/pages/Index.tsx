@@ -1,8 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
+import { useState } from 'react';
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
 
 const Index = () => {
+  const [reviews, setReviews] = useState<Review[]>([
+    {
+      id: 1,
+      name: "Анна",
+      rating: 5,
+      comment: "Заказывала хамелеона для ребенка - восторг! Качество печати отличное, все детали подвижные. Спасибо!",
+      date: "2024-10-05"
+    },
+    {
+      id: 2,
+      name: "Дмитрий",
+      rating: 5,
+      comment: "Очень круто! Китовая акула вышла просто супер, все сегменты двигаются плавно. Рекомендую!",
+      date: "2024-10-03"
+    }
+  ]);
+
+  const [newReview, setNewReview] = useState({
+    name: '',
+    rating: 5,
+    comment: ''
+  });
+
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -15,6 +49,21 @@ const Index = () => {
   const contactUs = () => {
     const whatsappUrl = 'https://wa.me/79659911806?text=Здравствуйте,%20хочу%20сделать%20заказ';
     window.open(whatsappUrl, '_blank');
+  };
+
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newReview.name.trim() && newReview.comment.trim()) {
+      const review: Review = {
+        id: Date.now(),
+        name: newReview.name,
+        rating: newReview.rating,
+        comment: newReview.comment,
+        date: new Date().toISOString().split('T')[0]
+      };
+      setReviews([review, ...reviews]);
+      setNewReview({ name: '', rating: 5, comment: '' });
+    }
   };
 
   const products = [
@@ -94,13 +143,6 @@ const Index = () => {
       price: "400₽",
       image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
       description: "Забавный кенгуру с подвижными лапками и хвостом"
-    },
-    {
-      id: 12,
-      name: "Малыш скорпион",
-      price: "300₽",
-      image: "https://cdn.poehali.dev/files/cb32fccd-7f6a-4d40-a090-c6fec9cfe85e.jpeg",
-      description: "Яркий голубой скорпион с подвижным хвостом и клешнями"
     }
   ];
 
@@ -120,6 +162,12 @@ const Index = () => {
                 className="text-white hover:text-yellow-200 transition-colors"
               >
                 Каталог
+              </button>
+              <button 
+                onClick={() => scrollToSection('reviews')} 
+                className="text-white hover:text-yellow-200 transition-colors"
+              >
+                Отзывы
               </button>
               <button 
                 onClick={() => scrollToSection('custom')} 
@@ -201,8 +249,103 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <section id="reviews" className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h3 className="text-4xl font-bold text-white text-center mb-12 font-montserrat">
+            Отзывы наших клиентов
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {reviews.map((review) => (
+              <Card key={review.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <CardTitle className="text-xl font-montserrat">{review.name}</CardTitle>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Icon 
+                          key={i} 
+                          name="Star" 
+                          size={18} 
+                          className={i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-400"} 
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-white/60 text-sm font-open-sans">{review.date}</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/90 font-open-sans">{review.comment}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Review Form */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-2xl font-montserrat text-center">Оставить отзыв</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmitReview} className="space-y-4">
+                <div>
+                  <label className="block text-white/90 mb-2 font-open-sans">Ваше имя</label>
+                  <Input 
+                    value={newReview.name}
+                    onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+                    className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+                    placeholder="Введите ваше имя"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-white/90 mb-2 font-open-sans">Оценка</label>
+                  <div className="flex gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setNewReview({ ...newReview, rating: star })}
+                        className="transition-transform hover:scale-110"
+                      >
+                        <Icon 
+                          name="Star" 
+                          size={32} 
+                          className={star <= newReview.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-400"} 
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-white/90 mb-2 font-open-sans">Ваш отзыв</label>
+                  <Textarea 
+                    value={newReview.comment}
+                    onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
+                    className="bg-white/20 border-white/30 text-white placeholder:text-white/50 min-h-[120px]"
+                    placeholder="Поделитесь вашими впечатлениями..."
+                    required
+                  />
+                </div>
+
+                <Button 
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-montserrat transform hover:scale-105 transition-all duration-200"
+                >
+                  <Icon name="Send" size={18} className="mr-2" />
+                  Отправить отзыв
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Custom Orders Section */}
-      <section id="custom" className="py-16 px-4">
+      <section id="custom" className="py-16 px-4 bg-white/5 backdrop-blur-sm">
         <div className="container mx-auto max-w-4xl text-center">
           <h3 className="text-4xl font-bold text-white mb-8 font-montserrat">
             Сделать заказ
