@@ -41,8 +41,26 @@ const Index = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const toGenitive = (name: string): string => {
+    const genitiveMap: { [key: string]: string } = {
+      "Китовая акула": "китовую акулу",
+      "Лягушка": "лягушку",
+      "Ленивый кот": "ленивого кота",
+      "Акула молот": "акулу молот",
+      "Игрушка-брелок тарантул": "игрушку-брелок тарантул",
+      "Хамелеон": "хамелеона",
+      "Змея": "змею",
+      "Каракатица": "каракатицу",
+      "Карп": "карпа",
+      "Морская звезда": "морскую звезду",
+      "Кенгуру": "кенгуру"
+    };
+    return genitiveMap[name] || name.toLowerCase();
+  };
+
   const orderProduct = (productName: string) => {
-    const whatsappUrl = `https://wa.me/79659911806?text=Здравствуйте,%20хочу%20заказать%20${encodeURIComponent(productName)}`;
+    const genitiveName = toGenitive(productName);
+    const whatsappUrl = `https://wa.me/79659911806?text=Здравствуйте,%20хочу%20заказать%20${encodeURIComponent(genitiveName)}`;
     window.open(whatsappUrl, '_blank');
   };
 
