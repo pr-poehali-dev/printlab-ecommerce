@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from '@/components/ui/icon';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 
 interface Review {
@@ -17,14 +18,33 @@ interface Review {
 const API_URL = 'https://functions.poehali.dev/a401d87c-c0ff-44e2-aa6d-c2ce016e8d7a';
 
 const Admin = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
 
   useEffect(() => {
+    const isAuth = localStorage.getItem('admin_auth');
+    const authTime = localStorage.getItem('admin_auth_time');
+    const currentTime = Date.now();
+    const oneHour = 60 * 60 * 1000;
+
+    if (!isAuth || !authTime || (currentTime - parseInt(authTime)) > oneHour) {
+      localStorage.removeItem('admin_auth');
+      localStorage.removeItem('admin_auth_time');
+      navigate('/admin/login');
+      return;
+    }
+
     fetchReviews();
-  }, []);
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('admin_auth');
+    localStorage.removeItem('admin_auth_time');
+    navigate('/admin/login');
+  };
 
   const fetchReviews = async () => {
     try {
@@ -122,19 +142,29 @@ const Admin = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <Icon name="Shield" size={32} className="text-purple-400" />
             <h1 className="text-3xl font-bold">Панель модерации отзывов</h1>
           </div>
-          <Button 
-            onClick={() => window.location.href = '/'}
-            variant="outline"
-            className="bg-white/10 border-white/20 hover:bg-white/20"
-          >
-            <Icon name="Home" size={18} className="mr-2" />
-            На главную
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={() => window.location.href = '/'}
+              variant="outline"
+              className="bg-white/10 border-white/20 hover:bg-white/20"
+            >
+              <Icon name="Home" size={18} className="mr-2" />
+              На главную
+            </Button>
+            <Button 
+              onClick={handleLogout}
+              variant="outline"
+              className="bg-red-900/20 border-red-500/50 hover:bg-red-900/40"
+            >
+              <Icon name="LogOut" size={18} className="mr-2" />
+              Выйти
+            </Button>
+          </div>
         </div>
 
         {/* Stats */}

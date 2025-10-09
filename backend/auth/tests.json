@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "Test authentication endpoint",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "password": "test123"
+      },
+      "expectedStatus": 401,
+      "expectedBody": {
+        "success": false
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
