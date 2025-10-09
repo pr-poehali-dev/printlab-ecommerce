@@ -1,35 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 interface Review {
   id: number;
   name: string;
   rating: number;
   comment: string;
-  date: string;
+  created_at: string;
+  status?: string;
 }
 
+const API_URL = 'https://functions.poehali.dev/a401d87c-c0ff-44e2-aa6d-c2ce016e8d7a';
+
 const Index = () => {
-  const [reviews, setReviews] = useState<Review[]>([
-    {
-      id: 1,
-      name: "Анна",
-      rating: 5,
-      comment: "Заказывала хамелеона для ребенка - восторг! Качество печати отличное, все детали подвижные. Спасибо!",
-      date: "2024-10-05"
-    },
-    {
-      id: 2,
-      name: "Дмитрий",
-      rating: 5,
-      comment: "Очень круто! Китовая акула вышла просто супер, все сегменты двигаются плавно. Рекомендую!",
-      date: "2024-10-03"
-    }
-  ]);
+  const { toast } = useToast();
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [newReview, setNewReview] = useState({
     name: '',
@@ -69,18 +60,50 @@ const Index = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleSubmitReview = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch(`${API_URL}?status=approved`);
+      const data = await response.json();
+      setReviews(data.reviews || []);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitReview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (newReview.name.trim() && newReview.comment.trim()) {
-      const review: Review = {
-        id: Date.now(),
-        name: newReview.name,
-        rating: newReview.rating,
-        comment: newReview.comment,
-        date: new Date().toISOString().split('T')[0]
-      };
-      setReviews([review, ...reviews]);
-      setNewReview({ name: '', rating: 5, comment: '' });
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: newReview.name,
+            rating: newReview.rating,
+            comment: newReview.comment
+          })
+        });
+        
+        if (response.ok) {
+          toast({
+            title: "Отзыв отправлен!",
+            description: "Ваш отзыв будет опубликован после модерации.",
+          });
+          setNewReview({ name: '', rating: 5, comment: '' });
+        }
+      } catch (error) {
+        toast({
+          title: "Ошибка",
+          description: "Не удалось отправить отзыв. Попробуйте позже.",
+          variant: "destructive"
+        });
+      }
     }
   };
 
@@ -274,31 +297,46 @@ const Index = () => {
             Отзывы наших клиентов
           </h3>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {reviews.map((review) => (
-              <Card key={review.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-xl font-montserrat">{review.name}</CardTitle>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Icon 
-                          key={i} 
-                          name="Star" 
-                          size={18} 
-                          className={i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-400"} 
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-white/60 text-sm font-open-sans">{review.date}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-white/90 font-open-sans">{review.comment}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="text-center text-white mb-12">
+              <Icon name="Loader2" size={48} className="animate-spin mx-auto" />
+              <p className="mt-4">Загрузка отзывов...</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {reviews.length === 0 ? (
+                <div className="col-span-2 text-center text-white/70 py-8">
+                  <p>Пока нет опубликованных отзывов. Будьте первым!</p>
+                </div>
+              ) : (
+                reviews.map((review) => (
+                  <Card key={review.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-2">
+                        <CardTitle className="text-xl font-montserrat">{review.name}</CardTitle>
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Icon 
+                              key={i} 
+                              name="Star" 
+                              size={18} 
+                              className={i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-400"} 
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-white/60 text-sm font-open-sans">
+                        {new Date(review.created_at).toLocaleDateString('ru-RU')}
+                      </p>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-white/90 font-open-sans">{review.comment}</p>
+                    </CardContent>
+                  </Card>
+                ))
+              )}
+            </div>
+          )}
 
           {/* Review Form */}
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white max-w-2xl mx-auto">

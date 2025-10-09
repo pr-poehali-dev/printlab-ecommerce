@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "Get approved reviews",
+      "method": "GET",
+      "path": "/?status=approved",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "reviews": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Create new review",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Test User",
+        "rating": 5,
+        "comment": "Great product!"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "review": "object"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
