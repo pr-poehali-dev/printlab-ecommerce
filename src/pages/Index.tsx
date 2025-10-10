@@ -44,7 +44,8 @@ const Index = () => {
       "Каракатица": "каракатицу",
       "Карп": "карпа",
       "Морская звезда": "морскую звезду",
-      "Кенгуру": "кенгуру"
+      "Кенгуру": "кенгуру",
+      "Дельфин": "дельфина"
     };
     return genitiveMap[name] || name.toLowerCase();
   };
@@ -184,6 +185,13 @@ const Index = () => {
       price: "400₽",
       image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
       description: "Забавный кенгуру с подвижными лапками и хвостом"
+    },
+    {
+      id: 12,
+      name: "Дельфин",
+      price: "300₽",
+      image: "https://cdn.poehali.dev/files/60e39448-d85c-45c9-9549-6dd7b31666f0.jpeg",
+      description: "Элегантный дельфин с изящными плавниками и гибким телом"
     }
   ];
 
