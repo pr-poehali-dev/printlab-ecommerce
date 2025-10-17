@@ -21,6 +21,7 @@ const Index = () => {
   const { toast } = useToast();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showProducts, setShowProducts] = useState(false);
 
   const [newReview, setNewReview] = useState({
     name: '',
@@ -257,11 +258,19 @@ const Index = () => {
       {/* Catalog Section */}
       <section id="catalog" className="py-16 px-4 bg-white/5 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
-          <h3 className="text-4xl font-bold text-white text-center mb-12 font-montserrat">
-            Каталог: Подвижные игрушки
-          </h3>
+          <div className="text-center mb-12">
+            <Button
+              onClick={() => setShowProducts(!showProducts)}
+              size="lg"
+              className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 font-montserrat font-semibold px-8 py-4 text-2xl"
+            >
+              Подвижные игрушки
+              <Icon name={showProducts ? "ChevronUp" : "ChevronDown"} size={24} className="ml-2" />
+            </Button>
+          </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {showProducts && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto animate-fade-in">
             {products.map((product) => (
               <Card 
                 key={product.id} 
@@ -295,6 +304,7 @@ const Index = () => {
               </Card>
             ))}
           </div>
+          )}
         </div>
       </section>
 
