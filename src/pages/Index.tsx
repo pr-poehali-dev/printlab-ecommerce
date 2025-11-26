@@ -119,7 +119,8 @@ const Index = () => {
     {
       id: 1,
       name: "Китовая акула",
-      price: "450₽",
+      price: "400₽",
+      oldPrice: "800₽",
       image: "https://cdn.poehali.dev/files/ebea276f-02e6-481b-909c-700c3b6d6b56.jpeg",
       description: "Подвижная 3D модель китовой акулы с сегментированным телом"
     },

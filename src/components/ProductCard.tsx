@@ -6,6 +6,7 @@ interface Product {
   id: number;
   name: string;
   price: string;
+  oldPrice?: string;
   image: string;
   description: string;
 }
@@ -34,9 +35,16 @@ const ProductCard = ({ product, onOrder }: ProductCardProps) => {
         </CardDescription>
       </CardHeader>
       <CardFooter className="flex justify-between items-center">
-        <span className="text-3xl font-bold text-yellow-200 font-montserrat">
-          {product.price}
-        </span>
+        <div className="flex flex-col">
+          {product.oldPrice && (
+            <span className="text-lg text-white/50 line-through font-montserrat">
+              {product.oldPrice}
+            </span>
+          )}
+          <span className="text-3xl font-bold text-yellow-200 font-montserrat">
+            {product.price}
+          </span>
+        </div>
         <Button 
           onClick={() => onOrder(product.name)}
           className="bg-green-600 hover:bg-green-700 text-white font-montserrat transform hover:scale-105 transition-all duration-200"
