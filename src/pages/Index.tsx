@@ -127,14 +127,16 @@ const Index = () => {
     {
       id: 2,
       name: "Лягушка",
-      price: "150₽", 
+      price: "150₽",
+      oldPrice: "300₽",
       image: "https://cdn.poehali.dev/files/c79fb40a-9f06-42f2-9e21-05546d16b4e2.jpeg",
       description: "Компактная подвижная лягушка с гибкими суставами"
     },
     {
       id: 3,
       name: "Ленивый кот",
-      price: "250₽",
+      price: "225₽",
+      oldPrice: "450₽",
       image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
       description: "Забавная модель ленивого кота с подвижными частями"
     },
@@ -142,34 +144,39 @@ const Index = () => {
       id: 4,
       name: "Акула молот",
       price: "400₽",
+      oldPrice: "800₽",
       image: "https://cdn.poehali.dev/files/10401ffa-4b31-4b2b-8ccc-83d178f1080a.jpeg",
       description: "Детализированная акула-молот с подвижными плавниками"
     },
     {
       id: 5,
       name: "Игрушка-брелок паук",
-      price: "300₽",
+      price: "250₽",
+      oldPrice: "500₽",
       image: "https://cdn.poehali.dev/files/a0030e5a-7043-4959-9007-e4c985781c1b.jpeg",
       description: "Компактный брелок-паук с подвижными лапками"
     },
     {
       id: 6,
       name: "Хамелеон",
-      price: "500₽",
+      price: "450₽",
+      oldPrice: "900₽",
       image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
       description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
     },
     {
       id: 7,
       name: "Змея",
-      price: "200₽",
+      price: "150₽",
+      oldPrice: "300₽",
       image: "https://cdn.poehali.dev/files/cf333ed5-2708-4e4a-b3fc-7377e89384f3.jpeg",
       description: "Гибкая змея с сегментированным телом и реалистичной головой"
     },
     {
       id: 8,
       name: "Каракатица",
-      price: "550₽",
+      price: "475₽",
+      oldPrice: "950₽",
       image: "https://cdn.poehali.dev/files/fbfd8853-c5ef-4c61-bea3-4d3eacc642eb.jpeg",
       description: "Детализированная каракатица с подвижными щупальцами"
     },
@@ -177,6 +184,7 @@ const Index = () => {
       id: 9,
       name: "Рыбка",
       price: "350₽",
+      oldPrice: "700₽",
       image: "https://cdn.poehali.dev/files/3678eafa-3f19-4745-9c30-097c6c4880c6.jpeg",
       description: "Подвижная модель карпа с гибким хвостом и плавниками"
     },
@@ -184,6 +192,7 @@ const Index = () => {
       id: 10,
       name: "Морская звезда",
       price: "250₽",
+      oldPrice: "500₽",
       image: "https://cdn.poehali.dev/files/b58a417d-47e2-48ec-a45f-22282741b866.jpeg",
       description: "Яркая морская звезда с подвижными лучами"
     },
@@ -191,13 +200,15 @@ const Index = () => {
       id: 11,
       name: "Кенгуру",
       price: "400₽",
+      oldPrice: "800₽",
       image: "https://cdn.poehali.dev/files/c4d6749e-601d-4bff-bae0-566170da7b93.jpeg",
       description: "Забавный кенгуру с подвижными лапками и хвостом"
     },
     {
       id: 12,
       name: "Дельфин",
-      price: "300₽",
+      price: "350₽",
+      oldPrice: "700₽",
       image: "https://cdn.poehali.dev/files/60e39448-d85c-45c9-9549-6dd7b31666f0.jpeg",
       description: "Элегантный дельфин с изящными плавниками и гибким телом"
     }
