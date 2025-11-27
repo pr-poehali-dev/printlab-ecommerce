@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import CatalogSection from '@/components/CatalogSection';
+import CategorySection from '@/components/CategorySection';
 import ReviewsSection from '@/components/ReviewsSection';
 import CustomOrderSection from '@/components/CustomOrderSection';
 import ComplaintsSection from '@/components/ComplaintsSection';
@@ -24,6 +24,7 @@ const Index = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showProducts, setShowProducts] = useState(false);
+  const [showNewYearProducts, setShowNewYearProducts] = useState(false);
 
   const [newReview, setNewReview] = useState({
     name: '',
@@ -48,7 +49,11 @@ const Index = () => {
       "Рыбка": "рыбку",
       "Морская звезда": "морскую звезду",
       "Кенгуру": "кенгуру",
-      "Дельфин": "дельфина"
+      "Дельфин": "дельфина",
+      "Украшение для ёлки снеговик": "украшение для ёлки снеговик",
+      "Новогодний олень": "новогоднего оленя",
+      "Снеговик с подвижными ножками": "снеговика с подвижными ножками",
+      "Украшение для ёлки снежинка": "украшение для ёлки снежинка"
     };
     return genitiveMap[name] || name.toLowerCase();
   };
@@ -214,11 +219,55 @@ const Index = () => {
     }
   ];
 
+  const newYearProducts = [
+    {
+      id: 13,
+      name: "Украшение для ёлки снеговик",
+      price: "150₽",
+      oldPrice: "300₽",
+      image: "https://cdn.poehali.dev/files/93ebb5fc-57f9-48f4-9473-3eb4d5bee0a5.jpeg",
+      description: "Милое украшение-снеговик с петелькой для подвешивания на ёлку"
+    },
+    {
+      id: 14,
+      name: "Новогодний олень",
+      price: "200₽",
+      oldPrice: "400₽",
+      image: "https://cdn.poehali.dev/files/20278e75-091f-4f4e-9633-b7d3a6ded5cf.jpeg",
+      description: "Элегантная фигурка оленя с рогами для новогоднего декора"
+    },
+    {
+      id: 15,
+      name: "Снеговик с подвижными ножками",
+      price: "225₽",
+      oldPrice: "450₽",
+      image: "https://cdn.poehali.dev/files/ab243ff2-b043-404a-9f98-731575d8c250.jpeg",
+      description: "Забавный снеговик с шарнирными подвижными ножками"
+    },
+    {
+      id: 16,
+      name: "Украшение для ёлки снежинка",
+      price: "125₽",
+      oldPrice: "250₽",
+      image: "https://cdn.poehali.dev/files/5f74ce6e-51c4-42cd-9bb2-41fed91fae0b.jpeg",
+      description: "Ажурная снежинка для подвешивания на новогоднюю ёлку"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-purple-600">
       <Header onNavigate={scrollToSection} />
       <HeroSection onNavigate={scrollToSection} />
-      <CatalogSection 
+      <CategorySection 
+        title="Новогодний декор"
+        products={newYearProducts}
+        showProducts={showNewYearProducts}
+        onToggleProducts={() => setShowNewYearProducts(!showNewYearProducts)}
+        onOrder={orderProduct}
+        isNew={true}
+      />
+      <CategorySection 
+        title="Подвижные игрушки"
         products={products}
         showProducts={showProducts}
         onToggleProducts={() => setShowProducts(!showProducts)}
