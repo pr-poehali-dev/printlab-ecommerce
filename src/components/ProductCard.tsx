@@ -19,22 +19,24 @@ interface ProductCardProps {
 const ProductCard = ({ product, onOrder }: ProductCardProps) => {
   return (
     <Card 
-      className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300"
+      className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:scale-105 transition-all duration-300 flex flex-col"
     >
-      <CardHeader>
-        <div className="aspect-square rounded-lg overflow-hidden mb-4">
+      <CardHeader className="p-4">
+        <div className="aspect-square rounded-lg overflow-hidden mb-3">
           <img 
             src={product.image} 
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
           />
         </div>
-        <CardTitle className="text-2xl font-montserrat">{product.name}</CardTitle>
-        <CardDescription className="text-white/70 font-open-sans">
+      </CardHeader>
+      <CardContent className="flex-1 px-4 pb-2">
+        <CardTitle className="text-2xl font-montserrat mb-2">{product.name}</CardTitle>
+        <CardDescription className="text-white/70 font-open-sans text-base">
           {product.description}
         </CardDescription>
-      </CardHeader>
-      <CardFooter className="flex justify-between items-center">
+      </CardContent>
+      <CardFooter className="flex justify-between items-center px-4 pb-4 pt-2">
         <div className="flex flex-col">
           {product.oldPrice && (
             <span className="text-lg text-white/50 line-through font-montserrat">
