@@ -9,8 +9,7 @@ interface TimeLeft {
 
 const CountdownTimer = () => {
   const calculateTimeLeft = (): TimeLeft => {
-    const endDate = new Date();
-    endDate.setHours(endDate.getHours() + 816);
+    const endDate = new Date('2025-12-31T23:59:59');
     
     const difference = endDate.getTime() - new Date().getTime();
     
