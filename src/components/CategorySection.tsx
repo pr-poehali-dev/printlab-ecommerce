@@ -9,6 +9,7 @@ interface Product {
   oldPrice?: string;
   image: string;
   description: string;
+  isHit?: boolean;
 }
 
 interface CategorySectionProps {

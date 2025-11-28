@@ -124,6 +124,24 @@ const Index = () => {
 
   const products = [
     {
+      id: 3,
+      name: "Ленивый кот",
+      price: "225₽",
+      oldPrice: "450₽",
+      image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
+      description: "Забавная модель ленивого кота с подвижными частями",
+      isHit: true
+    },
+    {
+      id: 7,
+      name: "Змея",
+      price: "150₽",
+      oldPrice: "300₽",
+      image: "https://cdn.poehali.dev/files/cf333ed5-2708-4e4a-b3fc-7377e89384f3.jpeg",
+      description: "Гибкая змея с сегментированным телом и реалистичной головой",
+      isHit: true
+    },
+    {
       id: 1,
       name: "Китовая акула",
       price: "400₽",
@@ -138,14 +156,6 @@ const Index = () => {
       oldPrice: "300₽",
       image: "https://cdn.poehali.dev/files/c79fb40a-9f06-42f2-9e21-05546d16b4e2.jpeg",
       description: "Компактная подвижная лягушка с гибкими суставами"
-    },
-    {
-      id: 3,
-      name: "Ленивый кот",
-      price: "225₽",
-      oldPrice: "450₽",
-      image: "https://cdn.poehali.dev/files/f5f03b27-b3c6-430b-80ca-762f2d1aa616.jpeg",
-      description: "Забавная модель ленивого кота с подвижными частями"
     },
     {
       id: 4,
@@ -170,14 +180,6 @@ const Index = () => {
       oldPrice: "900₽",
       image: "https://cdn.poehali.dev/files/04741c6d-d0d1-4cbe-ae2b-bbb49ffc2c67.jpeg",
       description: "Яркий хамелеон с градиентной расцветкой и подвижными частями"
-    },
-    {
-      id: 7,
-      name: "Змея",
-      price: "150₽",
-      oldPrice: "300₽",
-      image: "https://cdn.poehali.dev/files/cf333ed5-2708-4e4a-b3fc-7377e89384f3.jpeg",
-      description: "Гибкая змея с сегментированным телом и реалистичной головой"
     },
     {
       id: 8,
@@ -281,18 +283,18 @@ const Index = () => {
             onToggleProducts={() => setShowProducts(!showProducts)}
             onOrder={orderProduct}
           />
-          <ReviewsSection 
-            reviews={reviews}
-            isLoading={isLoading}
-            newReview={newReview}
-            onReviewChange={handleReviewChange}
-            onSubmitReview={handleSubmitReview}
-          />
-          <CustomOrderSection onContactUs={contactUs} />
-          <ComplaintsSection />
-          <Footer />
         </>
       )}
+      <ReviewsSection 
+        reviews={reviews}
+        isLoading={isLoading}
+        newReview={newReview}
+        onReviewChange={handleReviewChange}
+        onSubmitReview={handleSubmitReview}
+      />
+      <CustomOrderSection onContactUs={contactUs} />
+      <ComplaintsSection />
+      <Footer />
     </div>
   );
 };
