@@ -24,9 +24,6 @@ const ProductCard = ({ product, onOrder }: ProductCardProps) => {
     >
       <CardHeader className="p-4 relative">
         <div className="aspect-square rounded-lg overflow-hidden mb-3 relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 text-6xl" style={{marginTop: '-20px'}}>
-            🎅
-          </div>
           {product.isHit && (
             <div className="absolute top-2 right-2 z-20">
               <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white font-montserrat font-bold px-3 py-1 rounded-full text-xs shadow-lg animate-pulse">
