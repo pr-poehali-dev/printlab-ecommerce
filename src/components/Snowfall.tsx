@@ -12,24 +12,22 @@ const Snowfall = () => {
   const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
 
   useEffect(() => {
-    const flakes: Snowflake[] = Array.from({ length: 30 }, (_, i) => ({
+    const flakes: Snowflake[] = Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       delay: Math.random() * 5,
-      duration: 8 + Math.random() * 12,
-      size: 20 + Math.random() * 20,
+      duration: 5 + Math.random() * 10,
+      size: 2 + Math.random() * 4,
     }));
     setSnowflakes(flakes);
   }, []);
-
-  const gifts = ['🎁', '🎀', '🎄'];
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
       {snowflakes.map((flake) => (
         <div
           key={flake.id}
-          className="absolute top-0 opacity-70 animate-snowfall"
+          className="absolute top-0 text-white opacity-80 animate-snowfall"
           style={{
             left: `${flake.left}%`,
             animationDelay: `${flake.delay}s`,
@@ -37,7 +35,7 @@ const Snowfall = () => {
             fontSize: `${flake.size}px`,
           }}
         >
-          {gifts[flake.id % gifts.length]}
+          ❄️
         </div>
       ))}
     </div>
