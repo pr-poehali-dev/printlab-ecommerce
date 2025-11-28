@@ -7,6 +7,12 @@ interface HeaderProps {
 const Header = ({ onNavigate }: HeaderProps) => {
   return (
     <header className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-white/10 to-blue-400/20">
+        <div className="absolute top-2 left-1/4 animate-pulse">❄️</div>
+        <div className="absolute top-4 left-1/2 animate-pulse" style={{animationDelay: '0.5s'}}>❄️</div>
+        <div className="absolute top-1 right-1/4 animate-pulse" style={{animationDelay: '1s'}}>❄️</div>
+        <div className="absolute top-3 right-1/3 animate-pulse" style={{animationDelay: '1.5s'}}>❄️</div>
+      </div>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

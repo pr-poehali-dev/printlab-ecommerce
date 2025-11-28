@@ -7,6 +7,7 @@ import ReviewsSection from '@/components/ReviewsSection';
 import CustomOrderSection from '@/components/CustomOrderSection';
 import ComplaintsSection from '@/components/ComplaintsSection';
 import Footer from '@/components/Footer';
+import Snowfall from '@/components/Snowfall';
 
 interface Review {
   id: number;
@@ -25,6 +26,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showProducts, setShowProducts] = useState(false);
   const [showNewYearProducts, setShowNewYearProducts] = useState(false);
+  const [showCatalog, setShowCatalog] = useState(false);
 
   const [newReview, setNewReview] = useState({
     name: '',
@@ -256,33 +258,41 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-purple-600">
+      <Snowfall />
       <Header onNavigate={scrollToSection} />
-      <HeroSection onNavigate={scrollToSection} />
-      <CategorySection 
-        title="Новогодний декор"
-        products={newYearProducts}
-        showProducts={showNewYearProducts}
-        onToggleProducts={() => setShowNewYearProducts(!showNewYearProducts)}
-        onOrder={orderProduct}
-        isNew={true}
-      />
-      <CategorySection 
-        title="Подвижные игрушки"
-        products={products}
-        showProducts={showProducts}
-        onToggleProducts={() => setShowProducts(!showProducts)}
-        onOrder={orderProduct}
-      />
-      <ReviewsSection 
-        reviews={reviews}
-        isLoading={isLoading}
-        newReview={newReview}
-        onReviewChange={handleReviewChange}
-        onSubmitReview={handleSubmitReview}
-      />
-      <CustomOrderSection onContactUs={contactUs} />
-      <ComplaintsSection />
-      <Footer />
+      <HeroSection onNavigate={(section) => {
+        setShowCatalog(true);
+        scrollToSection(section);
+      }} />
+      {showCatalog && (
+        <>
+          <CategorySection 
+            title="Новогодний декор"
+            products={newYearProducts}
+            showProducts={showNewYearProducts}
+            onToggleProducts={() => setShowNewYearProducts(!showNewYearProducts)}
+            onOrder={orderProduct}
+            isNew={true}
+          />
+          <CategorySection 
+            title="Подвижные игрушки"
+            products={products}
+            showProducts={showProducts}
+            onToggleProducts={() => setShowProducts(!showProducts)}
+            onOrder={orderProduct}
+          />
+          <ReviewsSection 
+            reviews={reviews}
+            isLoading={isLoading}
+            newReview={newReview}
+            onReviewChange={handleReviewChange}
+            onSubmitReview={handleSubmitReview}
+          />
+          <CustomOrderSection onContactUs={contactUs} />
+          <ComplaintsSection />
+          <Footer />
+        </>
+      )}
     </div>
   );
 };
