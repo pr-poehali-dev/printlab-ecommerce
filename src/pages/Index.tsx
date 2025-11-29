@@ -252,7 +252,7 @@ const Index = () => {
       id: 16,
       name: "Украшение для ёлки снежинка",
       price: "150₽",
-      oldPrice: "400₽",
+      oldPrice: "300₽",
       image: "https://cdn.poehali.dev/files/5f74ce6e-51c4-42cd-9bb2-41fed91fae0b.jpeg",
       description: "Ажурная снежинка для подвешивания на новогоднюю ёлку"
     }
