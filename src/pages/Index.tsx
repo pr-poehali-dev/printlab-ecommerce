@@ -227,31 +227,31 @@ const Index = () => {
     {
       id: 13,
       name: "Украшение для ёлки снеговик",
-      price: "300₽",
-      oldPrice: "600₽",
+      price: "250₽",
+      oldPrice: "500₽",
       image: "https://cdn.poehali.dev/files/93ebb5fc-57f9-48f4-9473-3eb4d5bee0a5.jpeg",
       description: "Милое украшение-снеговик с петелькой для подвешивания на ёлку"
     },
     {
       id: 14,
       name: "Новогодний олень",
-      price: "400₽",
-      oldPrice: "800₽",
+      price: "300₽",
+      oldPrice: "600₽",
       image: "https://cdn.poehali.dev/files/20278e75-091f-4f4e-9633-b7d3a6ded5cf.jpeg",
       description: "Элегантная фигурка оленя с рогами для новогоднего декора"
     },
     {
       id: 15,
       name: "Снеговик с подвижными ножками",
-      price: "300₽",
-      oldPrice: "600₽",
+      price: "250₽",
+      oldPrice: "500₽",
       image: "https://cdn.poehali.dev/files/ab243ff2-b043-404a-9f98-731575d8c250.jpeg",
       description: "Забавный снеговик с шарнирными подвижными ножками"
     },
     {
       id: 16,
       name: "Украшение для ёлки снежинка",
-      price: "200₽",
+      price: "150₽",
       oldPrice: "400₽",
       image: "https://cdn.poehali.dev/files/5f74ce6e-51c4-42cd-9bb2-41fed91fae0b.jpeg",
       description: "Ажурная снежинка для подвешивания на новогоднюю ёлку"
